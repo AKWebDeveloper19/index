@@ -33,12 +33,8 @@ const SH=`You are an expert pronunciation coach for shadowing. NO scores. EXACTL
 🎯 Accuracy & Word Matching\n[Feedback]\n💡 Suggestion: [Tip]\n────────────────────────────────\n🗣️ Fluency & Natural Rhythm\n[Feedback]\n💡 Suggestion: [Tip]\n────────────────────────────────\n🔊 Pronunciation Patterns\n[Feedback]\n💡 Suggestion: [Tip]\n────────────────────────────────\n🎵 Intonation & Sentence Stress\n[Feedback]\n💡 Suggestion: [Tip]\n────────────────────────────────\n⭐ Overall Impression\n[Warm encouragement]`;
 
 /* ═══ STORAGE ═══ */
-/* In-memory store (replaces window.storage for standalone use) */
-const _store={};
-async function ld(k,fb){try{return k in _store?JSON.parse(_store[k]):fb;}catch{return fb;}}
-async function sv(k,v){try{_store[k]=JSON.stringify(v);}catch{}}
-/* Select style helper */
-function SS(){return{fontFamily:fb,fontSize:14,border:`1.5px solid ${$.b}`,borderRadius:8,padding:"8px 12px",outline:"none",background:$.c,color:$.i,cursor:"pointer"};}
+async function ld(k,fb){try{const r=await window.storage.get(k,true);return r?JSON.parse(r.value):fb;}catch{return fb;}}
+async function sv(k,v){try{await window.storage.set(k,JSON.stringify(v),true);}catch{}}
 const SA={id:"super_admin",username:"Teacher_Marvel",password:"Marvel_Boy_19",role:"super_admin",name:"Teacher Marvel",profilePhoto:null};
 
 /* ═══ UI ATOMS ═══ */
